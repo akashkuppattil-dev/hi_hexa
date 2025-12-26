@@ -87,7 +87,7 @@ export function Header() {
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex-shrink-0 bg-white/5 rounded-xl border border-white/10 overflow-hidden group-hover:border-orange-500/30 transition-all">
                   <Image
-                    src="/images/logo.jpg"
+                    src="/images/brands/linich-logo.jpg"
                     alt="Hexamech Logo"
                     fill
                     className="object-cover"
