@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight, MessageCircle, Search, ShieldCheck, CheckCircle, Truck } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
 const heroImages = [
   "/images/hero/hero-bg-1.jpg",
@@ -14,6 +15,8 @@ const heroImages = [
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [searchQuery, setSearchQuery] = useState("")
+  const router = useRouter()
 
   useEffect(() => {
     setMounted(true)
@@ -24,7 +27,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative h-[85vh] min-h-[600px] flex flex-col justify-center items-center overflow-hidden bg-zinc-950">
+    <section className="relative h-[65vh] md:h-[75vh] lg:h-[85vh] min-h-[480px] md:min-h-[600px] flex flex-col justify-center items-center overflow-hidden bg-zinc-950">
 
       {/* Static Background Composition (Simulating "Mixed" Image) */}
       <div className="absolute inset-0 z-0">
@@ -37,7 +40,7 @@ export function HeroSection() {
       </div>
 
       {/* Content Container */}
-      <div className="container mx-auto px-4 relative z-10 w-full max-w-5xl pt-10 pb-8">
+      <div className="container mx-auto px-4 relative z-10 w-full max-w-5xl pt-6 pb-4 md:pt-10 md:pb-8">
         <div className="flex flex-col items-center text-center">
 
           {/* Cursive Welcome Text */}
@@ -45,16 +48,46 @@ export function HeroSection() {
             Welcome to Hexamech
           </h2>
 
+          {/* Search Bar - Full Length, Decreased Height */}
+          <div className={`w-full max-w-md md:max-w-2xl mx-auto mb-10 transition-all duration-700 delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (searchQuery.trim()) {
+                  router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`)
+                }
+              }}
+              className="relative group"
+            >
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 md:h-5 md:w-5 text-zinc-500 group-focus-within:text-orange-500 transition-colors" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Search tools, brands, models..."
+                className="w-full h-10 md:h-12 pl-12 md:pl-14 pr-24 md:pr-28 bg-black/40 border-white/10 text-white text-sm md:text-base placeholder:text-zinc-500 rounded-xl md:rounded-[1.25rem] focus:border-orange-500/50 focus:bg-black/60 transition-all backdrop-blur-xl shadow-2xl"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="absolute right-1 top-1 bottom-1 px-5 md:px-8 bg-orange-600 hover:bg-orange-500 text-white rounded-lg md:rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-widest shadow-lg shadow-orange-900/40 transition-all active:scale-95 flex items-center justify-center"
+              >
+                Search
+              </button>
+            </form>
+          </div>
+
           {/* Main Title - Professional Supplier */}
-          <h1 className={`flex flex-col items-center font-black tracking-tighter text-white mb-4 uppercase transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <h1 className={`flex flex-col items-center font-black tracking-tighter text-white mb-3 md:mb-4 uppercase transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <div className="flex flex-col items-center text-center gap-0 relative">
-              <span className="text-[2rem] leading-[0.9] sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter uppercase z-10 drop-shadow-2xl">
+              <span className="text-sm leading-[0.9] sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-tighter uppercase z-10 drop-shadow-2xl">
                 Professional Automotive
               </span>
-              <span className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-orange-500 my-[-10px] md:my-[-20px] relative z-20 drop-shadow-lg" style={{ fontFamily: 'var(--font-great-vibes), cursive' }}>
+              <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-500 my-[-3px] md:my-[-10px] relative z-20 drop-shadow-lg" style={{ fontFamily: 'var(--font-great-vibes), cursive' }}>
                 &
               </span>
-              <span className="text-[1.75rem] leading-[0.9] sm:text-5xl md:text-6xl lg:text-7xl font-black text-zinc-300 tracking-tighter uppercase z-10 drop-shadow-2xl">
+              <span className="text-xs leading-[0.9] sm:text-lg md:text-xl lg:text-2xl font-black text-zinc-300 tracking-tighter uppercase z-10 drop-shadow-2xl">
                 Industrial Tools Supplier
               </span>
             </div>

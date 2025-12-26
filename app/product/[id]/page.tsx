@@ -29,7 +29,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] text-zinc-100 pb-20">
-      <div className="pt-6 md:pt-10">
+      <div className="pt-4 md:pt-10">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1400px]">
 
           {/* Breadcrumb */}

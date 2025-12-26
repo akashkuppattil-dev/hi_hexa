@@ -15,7 +15,10 @@ import {
   Phone,
   Users,
   Zap,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const contactMethods = [
   {
@@ -71,6 +74,15 @@ const whyContactUs = [
 ]
 
 export function ContactClientPage() {
+  const [currentAdvantage, setCurrentAdvantage] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentAdvantage((prev) => (prev + 1) % whyContactUs.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
   const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.7886594826486!2d75.99156897507685!3d11.280481188914985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65c0b5e5a5b0b%3A0x5e5a5b0b5e5a5b0b!2sHexamech%20Linich%20Tools!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin`
   const googleMapsLink = `https://maps.app.goo.gl/oAKCXkhXS9HwkDNs6`
 
@@ -101,34 +113,17 @@ export function ContactClientPage() {
       {/* Main Content */}
       <section className="py-12 relative z-10">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start mb-20">
 
-            {/* LEFT COLUMN: Contact Form */}
-            <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-3">
-                <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Get in Touch</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter uppercase">
-                Request a Quote / Business Enquiry
-              </h2>
-              <p className="text-sm md:text-base text-slate-400 font-medium mb-8 italic">
-                Submit your requirement and our team will get back to you within <strong className="text-orange-500">30 minutes</strong> during business hours.
-              </p>
-
-              <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl">
-                <ContactForm />
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN: Contact Info ("Connect Directly") */}
-            <div className="space-y-8">
+            {/* RIGHT COLUMN: Contact Info ("Connect Directly") - TOP ON MOBILE */}
+            <div className="space-y-8 order-1 lg:order-2 w-full">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4">
                   <span className="text-[9px] font-black text-blue-400 uppercase tracking-widest">Connect Directly</span>
                 </div>
                 <h3 className="text-2xl font-black text-white mb-6 uppercase tracking-tight">Direct Communication</h3>
 
-                <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
                   {contactMethods.map((method) => {
                     const Icon = method.icon
                     return (
@@ -151,6 +146,23 @@ export function ContactClientPage() {
                 </div>
               </div>
             </div>
+
+            {/* LEFT COLUMN: Contact Form - SECOND ON MOBILE */}
+            <div className="order-2 lg:order-1 w-full">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-3">
+                <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Get in Touch</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter uppercase">
+                Request a Quote / Business Enquiry
+              </h2>
+              <p className="text-sm md:text-base text-slate-400 font-medium mb-8 italic">
+                Submit your requirement and our team will get back to you within <strong className="text-orange-500">30 minutes</strong> during business hours.
+              </p>
+
+              <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl">
+                <ContactForm />
+              </div>
+            </div>
           </div>
 
           {/* "Why Hexamech?" Section - Moved Below */}
@@ -162,7 +174,8 @@ export function ContactClientPage() {
               <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">The Professional Advantage</h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Desktop View: Grid */}
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
               {whyContactUs.map((item) => {
                 const Icon = item.icon
                 return (
@@ -177,6 +190,29 @@ export function ContactClientPage() {
                   </div>
                 )
               })}
+            </div>
+
+            {/* Mobile View: Auto-sliding Carousel */}
+            <div className="md:hidden relative px-4 overflow-hidden">
+              <div
+                className="flex transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${currentAdvantage * 100}%)` }}
+              >
+                {whyContactUs.map((item) => {
+                  const Icon = item.icon
+                  return (
+                    <div key={item.title} className="w-full shrink-0 px-2">
+                      <div className="bg-slate-900/60 border border-slate-800/50 p-8 rounded-2xl flex flex-col items-center text-center shadow-2xl">
+                        <div className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 mb-6">
+                          <Icon className="h-8 w-8 text-orange-500" />
+                        </div>
+                        <h3 className="font-black text-white text-lg uppercase tracking-wider mb-3">{item.title}</h3>
+                        <p className="text-slate-400 text-sm leading-relaxed font-medium">{item.description}</p>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
           </div>
 

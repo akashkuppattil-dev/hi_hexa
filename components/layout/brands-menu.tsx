@@ -16,10 +16,10 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
             className="absolute top-full left-1/2 -translate-x-[20%] mt-0 pt-4 w-[950px] z-50 animate-in fade-in slide-in-from-top-1 duration-150"
             onMouseLeave={onClose}
         >
-            <div className="bg-[#111111] shadow-2xl rounded-xl border border-white/10 overflow-hidden flex h-[500px] transition-colors">
+            <div className="bg-[#000000] shadow-2xl rounded-xl border border-white/20 overflow-hidden flex h-[500px] transition-colors">
                 {/* Left Column: Brands List */}
-                <div className="w-[240px] bg-[#0a0a0a] border-r border-white/10 flex flex-col">
-                    <div className="p-4 border-b border-white/10 bg-[#111111]">
+                <div className="w-[240px] bg-[#050505] border-r border-white/10 flex flex-col">
+                    <div className="p-4 border-b border-white/10 bg-[#000000]">
                         <span className="text-xs font-bold text-orange-500 uppercase tracking-widest">Our Brands</span>
                     </div>
                     <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -44,7 +44,7 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                 </div>
 
                 {/* Right Column: Featured Products */}
-                <div className="flex-1 bg-[#111111] flex flex-col overflow-hidden">
+                <div className="flex-1 bg-[#000000] flex flex-col overflow-hidden">
                     <div className="p-6 pb-2 flex items-center justify-between">
                         <h3 className="text-lg font-bold text-white">{selectedBrand} <span className="text-zinc-500 font-normal ml-1">Products</span></h3>
                         <Link
@@ -63,7 +63,7 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                                     key={product.id}
                                     href={`/product/${product.id}`}
                                     onClick={onClose}
-                                    className="group flex flex-col gap-3 p-3 rounded-xl border border-white/5 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/10 transition-all bg-[#0a0a0a]"
+                                    className="group flex flex-col gap-3 p-3 rounded-xl border border-white/5 hover:border-orange-500/30 hover:shadow-lg hover:shadow-orange-500/10 transition-all bg-[#050505]"
                                 >
                                     <div className="relative aspect-square w-full bg-gradient-to-br from-[#fafafa] via-[#f5f5f5] to-[#eeeeee] rounded-lg overflow-hidden">
                                         <Image
@@ -90,7 +90,7 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                         </div>
                     </div>
 
-                    <div className="p-4 border-t border-white/10 bg-[#0a0a0a]">
+                    <div className="p-4 border-t border-white/10 bg-[#050505]">
                         <Link
                             href="/shop"
                             className="text-xs text-center block font-bold text-zinc-400 hover:text-orange-500 transition-colors uppercase tracking-wider"

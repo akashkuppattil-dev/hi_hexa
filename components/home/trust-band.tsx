@@ -8,21 +8,25 @@ const trustItems = [
     icon: Star,
     title: "4.5★ TrustScore",
     subtitle: "4,000+ Workshops",
+    color: "text-amber-400",
   },
   {
     icon: Truck,
     title: "Fast Delivery",
     subtitle: "PAN India Service",
+    color: "text-blue-400",
   },
   {
     icon: Wrench,
     title: "Tool Specialist",
     subtitle: "Expert Support",
+    color: "text-zinc-400",
   },
   {
     icon: Shield,
     title: "GST Verified",
     subtitle: "B2B Manufacturer",
+    color: "text-emerald-400",
   },
 ]
 
@@ -48,7 +52,7 @@ export function TrustBand() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-12 bg-zinc-950 border-y border-white/5 relative overflow-hidden h-[250px] md:h-[300px]">
+    <section ref={sectionRef} className="py-6 bg-zinc-950 border-y border-white/5 relative overflow-hidden h-[310px] md:h-[280px] lg:h-[340px]">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[100%] bg-gradient-to-r from-transparent via-orange-900/10 to-transparent pointer-events-none" />
 
@@ -68,21 +72,21 @@ export function TrustBand() {
       `}</style>
 
       <div className="container mx-auto px-4 relative z-10 h-full flex items-center justify-center">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full max-w-5xl">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 w-full max-w-5xl mx-auto">
           {trustItems.map((item, index) => (
             <div
               key={item.title}
-              className={`group relative flex flex-col items-center justify-center gap-3 p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-orange-500/30 transition-all duration-500 shadow-2xl backdrop-blur-md animate-float-${(index % 4) + 1} pause-animation z-10 aspect-square text-center`}
+              className={`group relative flex flex-col items-center justify-center gap-2 p-3 md:p-6 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-orange-500/30 transition-all duration-500 shadow-2xl backdrop-blur-md animate-float-${(index % 4) + 1} pause-animation z-10 aspect-square text-center max-w-[130px] md:max-w-none mx-auto`}
               style={{
                 animationDelay: `${index * 0.5}s`,
               }}
             >
-              <div className="flex-shrink-0 flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-xl bg-black border border-white/10 group-hover:border-orange-500/50 group-hover:bg-orange-500/20 transition-all duration-500 shadow-inner mb-2">
-                <item.icon className="h-6 w-6 md:h-7 md:w-7 text-zinc-400 group-hover:text-orange-500 transition-colors duration-500" />
+              <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 rounded-lg bg-black/50 border border-white/10 group-hover:border-orange-500/50 group-hover:bg-orange-500/20 transition-all duration-500 shadow-inner mb-1">
+                <item.icon className={`h-5 w-5 md:h-8 md:w-8 ${item.color} group-hover:text-white transition-colors duration-500`} />
               </div>
               <div className="flex flex-col items-center">
-                <h3 className="font-black text-white text-xs md:text-sm uppercase tracking-wide leading-tight mb-1 group-hover:text-orange-100 transition-colors">{item.title}</h3>
-                <p className="text-[10px] md:text-xs text-zinc-500 font-bold uppercase tracking-widest group-hover:text-orange-500/80 transition-colors">{item.subtitle}</p>
+                <h3 className="font-black text-white text-[10px] md:text-sm lg:text-base uppercase tracking-wide leading-tight mb-1 group-hover:text-orange-100 transition-colors">{item.title}</h3>
+                <p className="text-[9px] md:text-xs text-zinc-500 font-bold uppercase tracking-widest group-hover:text-orange-500/80 transition-colors">{item.subtitle}</p>
               </div>
 
               {/* Corner Accent */}

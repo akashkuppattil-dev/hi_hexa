@@ -26,12 +26,12 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-6">
 
           {/* BRAND */}
-          <div className="col-span-2 lg:col-span-3 space-y-2">
+          <div className="col-span-1 lg:col-span-3 space-y-2">
             <Link href="/" className="block">
-              <h2 className="text-lg font-bold tracking-tight text-white mb-0.5">
+              <h2 className="text-base sm:text-lg font-bold tracking-tight text-white mb-0.5">
                 HEXAMECH
               </h2>
-              <span className="text-[10px] font-semibold tracking-widest text-orange-500">
+              <span className="text-[8px] sm:text-[10px] font-semibold tracking-widest text-orange-500">
                 LINICH TOOLS
               </span>
             </Link>
@@ -71,7 +71,7 @@ export function Footer() {
           </div>
 
           {/* COMPANY */}
-          <div className="lg:col-span-2">
+          <div className="col-span-1 lg:col-span-2 text-right lg:text-left">
             <h4 className="footer-title mb-2 !text-[10px]">Company</h4>
             <ul className="footer-list space-y-0.5">
               <li><Link href="/">Home</Link></li>
@@ -84,7 +84,7 @@ export function Footer() {
           </div>
 
           {/* PRODUCTS */}
-          <div className="lg:col-span-2">
+          <div className="hidden lg:block lg:col-span-2">
             <h4 className="footer-title mb-2 !text-[10px]">Products</h4>
             <ul className="footer-list space-y-0.5">
               <li>Welding Machines</li>
@@ -97,7 +97,7 @@ export function Footer() {
           </div>
 
           {/* CUSTOMER SERVICE */}
-          <div className="lg:col-span-2">
+          <div className="hidden lg:block lg:col-span-2">
             <h4 className="footer-title mb-2 !text-[10px]">Support</h4>
             <ul className="footer-list space-y-0.5">
               <li><Link href="/contact">Request a Quote</Link></li>
@@ -134,7 +134,7 @@ export function Footer() {
         </div>
 
         {/* TRUST STRIP */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-4 border-t border-white/5">
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mt-6 pt-4 border-t border-white/5">
           <TrustItem icon={ShieldCheck} title="GST Verified" desc="Registered business" />
           <TrustItem icon={Truck} title="All India Shipping" desc="Reliable delivery" />
           <TrustItem icon={Package} title="Genuine Products" desc="Original brands" />
@@ -197,11 +197,11 @@ function TrustItem({
   desc: string
 }) {
   return (
-    <div className="flex items-start gap-4">
-      <Icon className="w-5 h-5 text-orange-500 mt-1" />
+    <div className="flex flex-col items-center text-center gap-1.5 px-1">
+      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
       <div>
-        <h5 className="text-sm font-semibold text-white">{title}</h5>
-        <p className="text-xs text-zinc-500">{desc}</p>
+        <h5 className="text-[10px] sm:text-xs font-semibold text-white leading-tight">{title}</h5>
+        <p className="text-[8px] sm:text-[10px] text-zinc-500 hidden sm:block">{desc}</p>
       </div>
     </div>
   )

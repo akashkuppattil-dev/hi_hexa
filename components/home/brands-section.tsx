@@ -128,7 +128,7 @@ export function BrandsSection() {
             variant="ghost"
             size="icon"
             onClick={prevRow}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
+            className="hidden lg:flex absolute -left-4 xl:-left-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
           >
             <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
@@ -158,7 +158,7 @@ export function BrandsSection() {
             variant="ghost"
             size="icon"
             onClick={nextRow}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
+            className="hidden lg:flex absolute -right-4 xl:-right-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
           >
             <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
           </Button>

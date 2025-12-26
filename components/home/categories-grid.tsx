@@ -6,17 +6,22 @@ import { categories } from "@/lib/products"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 const categoryImages: Record<string, string> = {
-  "hand-tools": "/hand-tools-wrenches-pliers-professional.jpg",
-  "power-tools": "/power-tools-drill-grinder-electric.jpg",
-  "spray-guns": "/spray-gun-paint-automotive-hvlp.jpg",
+  "collision-repair": "/collision-repair-equipment.jpg",
   welding: "/welding-machine-mig-tig-industrial.jpg",
+  "spray-guns": "/spray-gun-paint-automotive-hvlp.jpg",
   lifting: "/engine-crane-hydraulic-hoist-workshop.jpg",
   transmission: "/transmission-jack-stand-automotive.jpg",
-  "special-tools": "/special-service-tools-automotive-oem.jpg",
   pneumatic: "/pneumatic-tools-air-compressor-impact.jpg",
+  hydraulic: "/images/products/15-press-20t.jpg",
+  painting: "/images/products/23-infrared-booth.jpg",
+  measurement: "/images/products/34-fluke-multimeter.jpg",
+  "power-tools": "/power-tools-drill-grinder-electric.jpg",
+  "special-tools": "/special-service-tools-automotive-oem.jpg",
+  nitrogen: "/images/products/29-pcl-nitrogen.jpg",
+  storage: "/images/products/45-tool-storage-chest.jpg",
   stanley: "/stanley-tools-professional-yellow-black.jpg",
   bosch: "/bosch-power-tools-blue-professional.jpg",
 }
@@ -24,6 +29,36 @@ const categoryImages: Record<string, string> = {
 export function CategoriesGrid() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const itemsToShow = 4
+
+  // Auto-slide effect (3 seconds)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goToNext()
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [currentIndex])
+
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+    if (isLeftSwipe) goToNext()
+    if (isRightSwipe) goToPrev()
+    setTouchStart(null)
+    setTouchEnd(null)
+  }
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % categories.length)
@@ -74,12 +109,18 @@ export function CategoriesGrid() {
           </Link>
         </div>
 
-        <div className="relative group/categories">
+
+        <div
+          className="relative group/categories touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <Button
             variant="ghost"
             size="icon"
             onClick={goToPrev}
-            className="absolute -left-2 xl:-left-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/categories:opacity-100 hover:bg-orange-500 hover:text-black"
+            className="hidden sm:flex absolute -left-2 xl:-left-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/categories:opacity-100 hover:bg-orange-500 hover:text-black"
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -120,7 +161,7 @@ export function CategoriesGrid() {
             variant="ghost"
             size="icon"
             onClick={goToNext}
-            className="absolute -right-2 xl:-right-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/categories:opacity-100 hover:bg-orange-500 hover:text-black"
+            className="hidden sm:flex absolute -right-2 xl:-right-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/categories:opacity-100 hover:bg-orange-500 hover:text-black"
           >
             <ChevronRight className="h-4 w-4" />
           </Button>

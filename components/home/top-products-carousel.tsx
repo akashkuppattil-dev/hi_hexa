@@ -6,13 +6,13 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
-import { getTopProducts } from "@/lib/products"
+import { getProductsByCategory } from "@/lib/products"
 
 export function TopProductsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [itemsToShow, setItemsToShow] = useState(4)
 
-  const topProducts = getTopProducts(10)
+  const topProducts = getProductsByCategory("measurement").concat(getProductsByCategory("welding")).slice(0, 10)
 
   useEffect(() => {
     const handleResize = () => {
@@ -26,6 +26,36 @@ export function TopProductsCarousel() {
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
   }, [])
+
+  // Auto-slide effect (3 seconds)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      goToNext()
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [currentIndex])
+
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+    if (isLeftSwipe) goToNext()
+    if (isRightSwipe) goToPrev()
+    setTouchStart(null)
+    setTouchEnd(null)
+  }
 
   const goToNext = () => setCurrentIndex((prev) => (prev + 1) % topProducts.length)
   const goToPrev = () => setCurrentIndex((prev) => (prev - 1 + topProducts.length) % topProducts.length)
@@ -56,14 +86,26 @@ export function TopProductsCarousel() {
             <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Best Sellers</span>
           </div>
           <h2 className="text-2xl sm:text-4xl font-black text-white mb-2 tracking-tighter uppercase italic leading-none">
-            Heavy-Duty <span className="text-orange-500">Equipment</span>
+            Precision <span className="text-orange-500">Diagnostic Tools</span>
           </h2>
           <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xl mx-auto italic">
-            Engineered for precision and built for the toughest industrial environments.
+            Digital diagnostic systems engineered for precision and built for modern automotive environments.
           </p>
         </div>
 
-        <div className="relative group/carousel">
+        {/* Swipe Hint for Mobile */}
+        <div className="flex items-center justify-center gap-4 mb-4 sm:hidden">
+          <ChevronLeft className="h-4 w-4 text-orange-500 animate-pulse" />
+          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Swap to move</span>
+          <ChevronRight className="h-4 w-4 text-orange-500 animate-pulse" />
+        </div>
+
+        <div
+          className="relative group/carousel touch-pan-y"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <Button
             variant="ghost"
             size="icon"

@@ -7,7 +7,8 @@
     "dev": "next dev --turbo -H 0.0.0.0",
     "dev:mobile": "next dev --turbo -H 0.0.0.0 -p 3001",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "share": "ngrok http 3001"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
