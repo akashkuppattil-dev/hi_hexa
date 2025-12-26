@@ -87,7 +87,7 @@ export function Header() {
               <div className="flex items-center gap-2 sm:gap-3">
                 <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex-shrink-0 bg-white/5 rounded-xl border border-white/10 overflow-hidden group-hover:border-orange-500/30 transition-all">
                   <Image
-                    src="/images/brands/linich-logo.jpg"
+                    src="/images/hexamech-logo-new.jpg"
                     alt="Hexamech Logo"
                     fill
                     className="object-cover"
@@ -107,7 +107,7 @@ export function Header() {
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1.5 text-[8px] sm:text-[9px] text-zinc-300 mt-2 font-bold uppercase tracking-widest pl-1 leading-none">
+              <div className="whitespace-nowrap flex items-center gap-1.5 text-[7px] sm:text-[9px] text-zinc-300 mt-2 font-bold uppercase tracking-widest pl-1 leading-none">
                 <span>Professional Automotive</span>
                 <span className="text-orange-500 font-black text-[10px] sm:text-[11px]">&</span>
                 <span>Industrial Tools Supplier</span>
@@ -201,19 +201,7 @@ export function Header() {
 
             {/* Menu Links */}
             <div className="flex-1 overflow-y-auto pt-4 pb-8 px-4 custom-scrollbar">
-              {/* Mobile Search */}
-              <div className="mb-8 px-2">
-                <form onSubmit={handleSearchSubmit} className="relative group">
-                  <Input
-                    type="text"
-                    placeholder="Search tools, brands..."
-                    className="w-full h-11 bg-white/10 border-white/20 text-white placeholder:text-zinc-500 rounded-xl pl-11 focus:border-orange-500/50 focus:bg-white/15 transition-all shadow-lg"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 group-focus-within:text-orange-500 transition-colors" />
-                </form>
-              </div>
+
 
               <div className="mb-10">
                 <p className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.5em] mb-4 pl-4">Navigation</p>

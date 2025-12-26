@@ -33,6 +33,7 @@ const greatVibes = Great_Vibes({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://hi-hexa.vercel.app"),
   title: "Hexamech Linich Tools | Automotive Tools Wholesaler Kerala | Chulliparamba, Malappuram",
   description:
     "Hexamech Linich Tools – Kerala's premier automotive tools wholesaler in Chulliparamba, near Farook College, Malappuram. Wholesale spray guns, welders, power tools, garage equipment with fast delivery across Kerala & All India.",
@@ -52,14 +53,14 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg",
+        url: "/images/hexamech-logo-new.jpg",
         sizes: "120x120",
         type: "image/jpeg",
       },
     ],
     apple: [
       {
-        url: "https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg",
+        url: "/images/hexamech-logo-new.jpg",
         sizes: "120x120",
         type: "image/jpeg",
       },
@@ -72,9 +73,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg",
-        width: 120,
-        height: 120,
+        url: "/images/hexamech-logo-new.jpg",
+        width: 1200,
+        height: 630,
         alt: "Hexamech Linich Tools Logo",
       },
     ],
@@ -101,11 +102,11 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg"
+          href="/images/hexamech-logo-new.jpg"
         />
         <link
           rel="apple-touch-icon"
-          href="https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg"
+          href="/images/hexamech-logo-new.jpg"
         />
       </head>
       <body className={`${barlow.variable} ${inter.variable} ${greatVibes.variable} font-sans antialiased bg-zinc-950`} suppressHydrationWarning>

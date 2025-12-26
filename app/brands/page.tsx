@@ -92,25 +92,21 @@ export default function BrandsPage() {
                         <Link
                             key={brand.name}
                             href={`/shop?brand=${encodeURIComponent(brand.name)}`}
-                            className={`animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 50}ms]`}
+                            className={`block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 50}ms]`}
                         >
-                            <Card className="group bg-[#1a2235]/40 backdrop-blur-sm border border-white/10 hover:border-orange-500/50 transition-all duration-300 overflow-hidden rounded-2xl h-full flex flex-col">
-                                <div className="bg-white px-4 py-8 flex items-center justify-center flex-1">
-                                    <div className="relative w-full h-[60px] md:h-[80px]">
-                                        <Image
-                                            src={brand.logo}
-                                            alt={brand.name}
-                                            fill
-                                            className="object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500"
-                                        />
-                                    </div>
+                            <div className="group/brand-card relative aspect-square flex items-center justify-center p-4 bg-[#f8f9fa] rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                                {/* Soft lighting effect */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-black/5 opacity-50" />
+
+                                <div className="w-full h-full relative opacity-90 group-hover/brand-card:opacity-100 transition-all duration-300 transform group-hover/brand-card:scale-110">
+                                    <Image
+                                        src={brand.logo}
+                                        alt={brand.name}
+                                        fill
+                                        className="object-contain mix-blend-multiply filter contrast-125"
+                                    />
                                 </div>
-                                <div className="px-4 py-4 text-center border-t border-white/5 bg-black/20">
-                                    <h3 className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-300 group-hover:text-orange-500 transition-colors">
-                                        {brand.name}
-                                    </h3>
-                                </div>
-                            </Card>
+                            </div>
                         </Link>
                     ))}
                 </div>

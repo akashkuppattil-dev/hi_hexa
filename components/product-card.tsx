@@ -44,12 +44,12 @@ function ProductCardComponent({ product }: ProductCardProps) {
     <Card className="group relative overflow-hidden bg-[#1a2235] border border-white/10 flex flex-col h-full rounded-2xl hover:shadow-2xl hover:border-orange-500/40 transition-all duration-300 !pt-0">
       <Link href={`/product/${product.id}`} className="flex flex-col h-full">
         {/* Product Image - Dominant & Clear */}
-        <div className="relative h-[320px] md:h-[360px] w-full overflow-hidden bg-white">
+        <div className="relative h-[320px] md:h-[360px] w-full overflow-hidden bg-[#1a2235]">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={product.name}
             fill
-            className="object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading="lazy"
           />
@@ -80,8 +80,7 @@ function ProductCardComponent({ product }: ProductCardProps) {
             <Share2 className="h-5 w-5 group-hover/share:rotate-12 transition-transform" />
           </button>
 
-          {/* Overlay Gradient for Text Contrast (Bottom only) */}
-          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
         </div>
 
         <CardContent className="p-6 flex-grow flex flex-col">

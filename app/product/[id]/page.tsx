@@ -47,13 +47,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
             {/* LEFT COLUMN: Large Product Image */}
             <div className="lg:col-span-5 lg:sticky lg:top-24 mb-8 lg:mb-0">
-              <div className="bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl p-6 border border-white/10 relative overflow-hidden group shadow-2xl">
-                <div className="relative aspect-square w-full flex items-center justify-center">
+              <div className="bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl border border-white/10 relative overflow-hidden group shadow-2xl">
+                <div className="relative aspect-square w-full">
                   <Image
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
                     fill
-                    className="object-contain mix-blend-multiply contrast-125 transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
                     priority
                     sizes="(max-width: 1024px) 100vw, 600px"
                   />
@@ -78,13 +78,13 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="space-y-4">
                 <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest">
                   <span className="text-orange-500 px-3 py-1 bg-orange-500/10 rounded">{product.brand}</span>
-                  <span className="text-zinc-500">|</span>
-                  <span className="text-zinc-400 font-bold">SKU: {product.sku}</span>
+                  <span className="text-zinc-400">|</span>
+                  <span className="text-zinc-200 font-bold">SKU: {product.sku}</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none tracking-tight">
                   {product.name}
                 </h1>
-                <p className="text-base md:text-lg text-zinc-200 font-medium leading-relaxed border-l-4 border-zinc-700 pl-6">
+                <p className="text-base md:text-lg text-white font-medium leading-relaxed border-l-4 border-orange-500 pl-6">
                   {product.description}
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <div className="p-2">
                   {Object.entries(product.specs).map(([key, value], idx) => (
                     <div key={key} className={`flex justify-between items-center p-4 ${idx !== Object.entries(product.specs).length - 1 ? 'border-b border-white/5' : ''}`}>
-                      <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{key}</span>
+                      <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest">{key}</span>
                       <span className="text-sm font-black text-white text-right">{value}</span>
                     </div>
                   ))}
@@ -109,11 +109,11 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="space-y-4 pt-4 border-t border-white/5">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-500">Procurement</span>
+                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-400">Procurement</span>
                     <span className="text-white font-bold text-sm">Bulk Orders Available</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-500">Min Order</span>
+                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-400">Min Order</span>
                     <span className="text-white font-bold text-sm">{product.minOrderQty}</span>
                   </div>
                 </div>
@@ -148,15 +148,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="grid grid-cols-3 gap-2 pt-6">
                 <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><Info className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Genuine</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Genuine</span>
                 </div>
                 <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><Activity className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Support</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Support</span>
                 </div>
                 <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><ShoppingCart className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Fast Ship</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Fast Ship</span>
                 </div>
               </div>
 
